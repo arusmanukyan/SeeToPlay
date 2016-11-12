@@ -1,0 +1,13 @@
+#map {
+        height: 400px;
+        width: 100%;
+        }
+
+        input, select, textarea{
+            color: #ff0000;
+        }
+
+        textarea:focus, input:focus {
+        color: #ff0000;
+        }
+

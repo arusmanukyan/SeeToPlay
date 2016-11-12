@@ -16,7 +16,8 @@
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
  
-
+    <!-- CSS for Google Map and Text input -->
+    <link rel="stylesheet" type="text/css" href="assets/css/googlemap.css">
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,22 +39,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-      #map {
-        height: 400px;
-        width: 100%;
-       }
-        
-        input, select, textarea{
-            color: #ff0000;
-        }
-
-        textarea:focus, input:focus {
-        color: #ff0000;
-        }
-
-    </style>
-
+    
 </head>
 
 <body id="page-top">
@@ -109,7 +95,7 @@
                     <h2 class="section-heading">We see you!</h2>
                     <hr class="light">
                     <div id="map"></div>
-                    <hr>
+                    <hr class="light">
                     <a href="#services" class="btn btn-default btn-xl">See!</a>
 
                 </div>
@@ -170,109 +156,14 @@
         </div>
     </section>
 
-    <section class="no-padding" id="portfolio">
-
-        <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/1.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/2.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/3.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/4.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/5.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="img/portfolio/fullsize/6.jpg" class="portfolio-box">
-                        <img src="img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Category
-                                </div>
-                                <div class="project-name">
-                                    Project Name
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <aside class="bg-dark">
         <div class="container text-center">
 
             <form id="artist-form">
-               <label for="artist-input">Choose Your Artist</label>
+               <label for="artist-input"><h2>Listen to an Artist!</h2></label>
+               <hr>
                <input type="text" id="artist-input"><br>
                <hr>
                <input id="selectArtist" class="btn btn-default btn-xl" type="submit">
@@ -288,9 +179,9 @@
             --> 
             
                 <div class="call-to-action">
-                <h2>Listen to an Artist!</h2>
+                
 
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
+               
             </div>
         </div>
     </aside>
@@ -333,141 +224,13 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjDIluMc10oPhfwCwmWZK59Wsl4QM1voU&callback=initMap">
     </script>
 
-    <script>
-
-    //Search
-
-
-function getArtistTrack(artist){
-
-        // Run an initial search to identify the artist unique Spotify ID
-        var queryURL = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist";
-        $.ajax({url: queryURL, method: 'GET'}).done(function(response) {
-
-            // Prints the entire object to console
-            console.log(response);
-
-            // Prints the Artist ID from the Spotify Object to console.
-            var artistID = response.artists.items[0].id;
-
-            // Then we build a SECOND URL to query another Spotify endpoint (this one for the tracks)
-            var queryURLTracks = "https://api.spotify.com/v1/artists/" + artistID +"/top-tracks?country=US";
-
-            // We then run a second AJAX call to get the tracks associated with that Spotify ID
-            $.ajax({url: queryURLTracks, method: 'GET'}).done(function(trackResponse) {
-
-                // Gets the tracks
-                console.log(trackResponse);
-
-                // Builds a Spotify player playing the top song associated with the artist. (NOTE YOU NEED TO BE LOGGED INTO SPOTIFY)
-                var player = '<iframe src="https://embed.spotify.com/?uri=spotify:track:'+trackResponse.tracks[0].id+'" frameborder="0" allowtransparency="true"></iframe>';
-
-                // Appends the new player into the HTML
-               $("#playerDiv").append(player)
-            })
-        });     
-    }
-
-
-    // On Button Click for Artist Selection
-    $('#selectArtist').on('click', function(){
-
-        // Grab the Artist Name
-        var artist = $('#artist-input').val().trim();
-
-        // Run the Artist Player Function (Passing in the Artist as an Argument)
-        getArtistTrack(artist);
-
-        // Prevents moving to the next page
-        return false;
-    });
-
-    //YoutubePlayer
-
-    // var tag = document.createElement('script');
-
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // var firstScriptTag = document.getElementsByTagName('script')[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // var player;
-
-    // function onYouTubeIframeAPIReady() {
-    //     player = new YT.Player('player', {
-    //         height: '390',
-    //         width: '640',
-    //         videoId: 'k92G_wfpG2w',
-    //         events: {
-    //             'onReady': onPlayerReady,
-    //             'onStateChange': onPlayerStateChange
-    //             }
-    //         });
-    //     }
-
-    //     function onPlayerReady(event) {
-    //         event.target.playVideo();
-    //     }
-
-    //     var done = false;
-        
-    //     function onPlayerStateChange(event) {
-    //         if (event.data == YT.PlayerState.PLAYING && !done) {
-    //             setTimeout(stopVideo, 6000);
-    //             done = true;
-    //         }
-    //     }
-
-    //     function stopVideo() {
-    //         player.stopVideo();
-    //     }
-
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-      }
-      </script>
-  
     </body>
 
 </body>
 
 </html>
     <script type="text/javascript" src="assets/js/login.js"></script>
-
+    <script type="text/javascript" src="assets/js/artistSearch.js"></script>
 </body>
 
 </html>
