@@ -17,9 +17,6 @@ var modal = (function(){
 	$overlay.hide();
 	$modal.append($content, $close);
 
-// $(window).load(function(){
-// 	$()
-// })
 	$(document).ready(function(){
 		$("body").append($overlay, $modal);
 
@@ -69,8 +66,9 @@ var modal = (function(){
   return method;
 }());	
 
-$(document).ready(function(){
-	modal.open({content: $(
-		
-		), width: "500px", height: "200px"})
+$(document).ready(function(){ 
+
+		modal.open({content:
+			"<p>Welcome to See to Play. Here you can find your favorite live music and listen to your favorite songs.</p>"
+     , width: "500px", height: "200px"})
 });
