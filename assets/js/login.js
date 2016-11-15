@@ -69,6 +69,6 @@ var modal = (function(){
 $(document).ready(function(){ 
 
 		modal.open({content:
-			"<p>Welcome to See to Play. Here you can find your favorite live music and listen to your favorite songs.</p>"
-     , width: "500px", height: "200px"})
+			"<p>Welcome to See to Play. Here you can find your favorite live music and listen to your favorite songs.</p><style>background: url(.../images/headphones2.jpg);</style>"
+     })
 });
