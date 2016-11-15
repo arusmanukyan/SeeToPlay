@@ -69,6 +69,6 @@ var modal = (function(){
 $(document).ready(function(){ 
 
 		modal.open({content:
-			"<p>Welcome to See to Play. Here you can find your favorite live music and listen to your favorite songs.</p><style>background: url(.../images/headphones2.jpg);</style>"
-     })
+			"<h1>Welcome to See to Play.</h1><p> Here's how it works. Google finds your location. We show a list of your local concerts. You pick your desired event and play the artists songs all on one website.</p>"
+     , width: "500px", height: "200px"})
 });
