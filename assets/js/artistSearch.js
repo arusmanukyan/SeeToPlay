@@ -1,4 +1,57 @@
+ // Initialize Firebase Mos firebase to google-location api
+  var config = {
+    apiKey: "AIzaSyCPyjktJ_xuju1gmL1x8ogZB7DaYVXwzgM",
+    authDomain: "project-1-see-to-play.firebaseapp.com",
+    databaseURL: "https://project-1-see-to-play.firebaseio.com",
+    storageBucket: "project-1-see-to-play.appspot.com",
+    messagingSenderId: "777613307214"
+  };
 
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+  var clickCounter = 0;
+
+  $("#find-me").on("click", function() {
+  
+  var lastCount = clickCounter;
+    // Add to clickCounter
+    clickCounter++;
+
+    // ***** Store Click Data to Firebase in a JSON property called clickCount *****
+    // Note how we are using the Firebase .set() method
+    database.ref().set({
+      clickCount: clickCounter,
+      name: 'Moe',
+      lastClickCount: lastCount
+    });
+  })
+
+  database.ref().on("value", function(snapshot) {
+
+    // Then we console.log the value of snapshot
+    console.log(snapshot.val());
+
+    // Then we change the html associated with the number.
+    /*
+    snapshot.val() =
+    {
+      clickCount: clickCounter
+    }
+    */
+    // $("#find-me").html(snapshot.val().clickCount);
+
+    // // Then update the clickCounter variable with data from the database.
+    // clickCounter = snapshot.val().clickCount;
+
+  // If there is an error that Firebase runs into -- it will be stored in the "errorObject"
+  // Again we could have named errorObject anything we wanted.
+  }, function (errorObject) {
+
+    // In case of error this will print the error
+      console.log("The read failed: " + errorObject.code);
+
+  });
 
     //Search
 
@@ -47,45 +100,6 @@
         return false;
     });
 
-    //YoutubePlayer
-
-    // var tag = document.createElement('script');
-
-    // tag.src = "https://www.youtube.com/iframe_api";
-    // var firstScriptTag = document.getElementsByTagName('script')[0];
-    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    // var player;
-
-    // function onYouTubeIframeAPIReady() {
-    //     player = new YT.Player('player', {
-    //         height: '390',
-    //         width: '640',
-    //         videoId: 'k92G_wfpG2w',
-    //         events: {
-    //             'onReady': onPlayerReady,
-    //             'onStateChange': onPlayerStateChange
-    //             }
-    //         });
-    //     }
-
-    //     function onPlayerReady(event) {
-    //         event.target.playVideo();
-    //     }
-
-    //     var done = false;
-        
-    //     function onPlayerStateChange(event) {
-    //         if (event.data == YT.PlayerState.PLAYING && !done) {
-    //             setTimeout(stopVideo, 6000);
-    //             done = true;
-    //         }
-    //     }
-
-    //     function stopVideo() {
-    //         player.stopVideo();
-    //     }
-
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
@@ -106,9 +120,13 @@
               lng: position.coords.longitude
             };
 
+            currentUserPosition = pos;
+
+
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             map.setCenter(pos);
+            console.log(currentUserPosition);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -124,3 +142,23 @@
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
       }
+
+
+
+$('#selectSearch').on('click', function(){
+
+        // Grab the Artist Name
+        var searchInput = $('#search-input').val();
+
+        // Run the Artist Player Function (Passing in the Artist as an Argument)
+        console.log(searchInput);
+
+        // Prevents moving to the next page
+        return false;
+    });
+
+
+
+
+      
+
