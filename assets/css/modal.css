@@ -9,7 +9,6 @@
 }
 #modal {
   position:absolute;
-  background:rgba(0,0,0,0.2);
   border-radius:14px;
   padding:8px;
 }
@@ -20,9 +19,9 @@
 }
 #close {
   position:absolute;
-  background:url('http://www.jacklmoore.com/demo/modal/close.png') 0 0 no-repeat;
   width:24px;
   height:27px;
+  background:url('http://www.jacklmoore.com/demo/modal/close.png') 0 0 no-repeat;
   display:block;
   text-indent:-9999px;
   top:-7px;

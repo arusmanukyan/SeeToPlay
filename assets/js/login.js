@@ -6,17 +6,16 @@ var modal = (function(){
   	$content,
   	$close;
 
-		
+	// turns the variables into divs with IDs.
 	$overlay = $('<div id="overlay"></div>');
 	$modal = $('<div id="modal"></div>');
 	$content = $('<div id="content"></div>');
 	$close = $('<a id="close" href="#">close</a>');
 
-
-	$modal.hide();
-	$overlay.hide();
+	// inserts the content into the modal
 	$modal.append($content, $close);
 
+	// puts the modal into the body of the html
 	$(document).ready(function(){
 		$("body").append($overlay, $modal);
 
@@ -24,7 +23,7 @@ var modal = (function(){
   // Center the modal in the viewport
 	method.center = function() {
 	  var top, left;
-
+	  // this is the equation that tells it to go center of the screen no matter where the scroller is with in the website.
 	  top = Math.max($(window).height() - $modal.outerHeight(), 0) / 2;
 	  left = Math.max($(window).width() - $modal.outerWidth(), 0) / 2;
 
@@ -36,7 +35,7 @@ var modal = (function(){
   // Open the modal
  	method.open = function (settings) {
 	  $content.empty().append(settings.content);
-
+// sets with and height of the modal and centers it. Auto opens it first.
 	  $modal.css({
 	    width: settings.width || "auto", 
 	    height: settings.height || "auto"
