@@ -14,7 +14,9 @@
     <script
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous">     
+  </script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcKlPe7xFiVtEXRXWxQ7TkqrGlUlYP1nA&libraries=places"></script>
  
     <!-- CSS for Google Map and Text input -->
     <link rel="stylesheet" type="text/css" href="assets/css/googlemap.css">
@@ -32,6 +34,7 @@
     <!-- Theme CSS -->
     <link href="css/creative.min.css" rel="stylesheet">
     <link href="assets/css/modal.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,7 +86,7 @@
                 <h1 id="homeHeading">See to play</h1>
                 <hr>
                 <p>Find your favorite live music and local eateries</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Me</a>
+                <a id= "find-me" href="#about" class="btn btn-primary btn-xl page-scroll">Find Me</a>
             </div>
         </div>
     </header>
@@ -108,8 +111,12 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
 
-                    <h2 class="section-heading">Song Kick</h2>
-                    <hr class="primary">
+                <h2 class="section-heading">Song Kick</h2>
+                <form id="search-form">
+               <input type="text" id="search-input"><br>
+               <hr>
+               <input id="selectSearch" class="btn btn-primary btn-xl" type="submit">
+            </form>
                 </div>
             </div>
         </div>
@@ -221,16 +228,11 @@
     <script src="js/creative.min.js"></script>
     
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjDIluMc10oPhfwCwmWZK59Wsl4QM1voU&callback=initMap">
-    </script>
-
-    </body>
-
-</body>
-
-</html>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjDIluMc10oPhfwCwmWZK59Wsl4QM1voU&callback=initMap"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
     <script type="text/javascript" src="assets/js/artistSearch.js"></script>
+    
+
 </body>
 
 </html>
