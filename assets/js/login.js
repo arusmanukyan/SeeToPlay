@@ -17,9 +17,6 @@ var modal = (function(){
 	$overlay.hide();
 	$modal.append($content, $close);
 
-// $(window).load(function(){
-// 	$()
-// })
 	$(document).ready(function(){
 		$("body").append($overlay, $modal);
 
@@ -69,8 +66,9 @@ var modal = (function(){
   return method;
 }());	
 
-$(document).ready(function(){
-	modal.open({content: $(
-		
-		), width: "500px", height: "200px"})
+$(document).ready(function(){ 
+
+		modal.open({content:
+			"<h1>Welcome to See to Play.</h1><p> Here's how it works. Google finds your location. We show a list of your local concerts. You pick your desired event and play the artists songs all on one website.</p>"
+     , width: "500px", height: "200px"})
 });
