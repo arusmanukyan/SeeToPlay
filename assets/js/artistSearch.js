@@ -1,57 +1,58 @@
  // Initialize Firebase Mos firebase to google-location api
-  var config = {
-    apiKey: "AIzaSyCPyjktJ_xuju1gmL1x8ogZB7DaYVXwzgM",
-    authDomain: "project-1-see-to-play.firebaseapp.com",
-    databaseURL: "https://project-1-see-to-play.firebaseio.com",
-    storageBucket: "project-1-see-to-play.appspot.com",
-    messagingSenderId: "777613307214"
-  };
+  // var config = {
+  //   apiKey: "AIzaSyCPyjktJ_xuju1gmL1x8ogZB7DaYVXwzgM",
+  //   authDomain: "project-1-see-to-play.firebaseapp.com",
+  //   databaseURL: "https://project-1-see-to-play.firebaseio.com",
+  //   storageBucket: "project-1-see-to-play.appspot.com",
+  //   messagingSenderId: "777613307214"
+  // };
 
-  firebase.initializeApp(config);
+  // firebase.initializeApp(config);
 
-  var database = firebase.database();
-  var clickCounter = 0;
+  // var database = firebase.database();
+  // var clickCounter = 0;
 
-  $("#find-me").on("click", function() {
+  // $("#find-me").on("click", function() {
   
-  var lastCount = clickCounter;
-    // Add to clickCounter
-    clickCounter++;
+  // var lastCount = clickCounter;
+  //   // Add to clickCounter
+  //   clickCounter++;
 
-    // ***** Store Click Data to Firebase in a JSON property called clickCount *****
-    // Note how we are using the Firebase .set() method
-    database.ref().set({
-      clickCount: clickCounter,
-      name: 'Moe',
-      lastClickCount: lastCount
-    });
-  })
+  //   // ***** Store Click Data to Firebase in a JSON property called clickCount *****
+  //   // Note how we are using the Firebase .set() method
+  //   database.ref().set({
+  //     clickCount: clickCounter,
+  //     name: 'Moe',
+  //     lastClickCount: lastCount,
+  //     location: pos
+  //   });
+  // })
 
-  database.ref().on("value", function(snapshot) {
+  // database.ref().on("value", function(snapshot) {
 
-    // Then we console.log the value of snapshot
-    console.log(snapshot.val());
+  //   // Then we console.log the value of snapshot
+  //   console.log(snapshot.val());
 
-    // Then we change the html associated with the number.
-    /*
-    snapshot.val() =
-    {
-      clickCount: clickCounter
-    }
-    */
-    // $("#find-me").html(snapshot.val().clickCount);
+  //   // Then we change the html associated with the number.
+  //   /*
+  //   snapshot.val() =
+  //   {
+  //     clickCount: clickCounter
+  //   }
+  //   */
+  //   // $("#find-me").html(snapshot.val().clickCount);
 
-    // // Then update the clickCounter variable with data from the database.
-    // clickCounter = snapshot.val().clickCount;
+  //   // // Then update the clickCounter variable with data from the database.
+  //   // clickCounter = snapshot.val().clickCount;
 
-  // If there is an error that Firebase runs into -- it will be stored in the "errorObject"
-  // Again we could have named errorObject anything we wanted.
-  }, function (errorObject) {
+  // // If there is an error that Firebase runs into -- it will be stored in the "errorObject"
+  // // Again we could have named errorObject anything we wanted.
+  // }, function (errorObject) {
 
-    // In case of error this will print the error
-      console.log("The read failed: " + errorObject.code);
+  //   // In case of error this will print the error
+  //     console.log("The read failed: " + errorObject.code);
 
-  });
+  // });
 
     //Search
 
@@ -105,6 +106,19 @@
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
 
+      var currentUserPosition;
+      
+
+      if (localStorage.getItem("location" !== null)) {
+        currentUserPosition = localStorage.getItem("location");
+      }
+
+      function setLocation (thingy) {
+        currentUserPosition = thingy;
+        // localStorage.setItem("location", thingy);
+      }
+
+
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
@@ -120,14 +134,59 @@
               lng: position.coords.longitude
             };
 
-            currentUserPosition = pos;
+
+            setLocation(currentUserPosition);
 
 
             infoWindow.setPosition(pos);
             infoWindow.setContent('Location found.');
             map.setCenter(pos);
-            console.log(currentUserPosition);
-          }, function() {
+            console.log("currentUserPosition @ initMap function: ", pos);
+
+            // var map;
+            // var infowindow;
+            // var myPlace = {lat: 25.276987, lng: 55.296249 }; 
+
+            // myPlace = pos; 
+
+            var service = new google.maps.places.PlacesService(map);
+            console.log(pos);
+
+            service.nearbySearch(
+            {
+
+                location : pos,
+                radius : 5500,
+                type : [ 'restaurant' ]
+            }, callback);
+            
+            function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+            }
+        }
+
+function createMarker(place, callback) {
+
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map : map,
+                position : place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+              var infowindow;
+              console.log(place.name);
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+
+            });
+        }
+
+          },
+        function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
         } else {
@@ -143,7 +202,7 @@
                               'Error: Your browser doesn\'t support geolocation.');
       }
 
-
+console.log("currentUserPosition out of scope: ",currentUserPosition);
 
 $('#selectSearch').on('click', function(){
 
@@ -157,7 +216,72 @@ $('#selectSearch').on('click', function(){
         return false;
     });
 
+function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
 
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
 
 
       
