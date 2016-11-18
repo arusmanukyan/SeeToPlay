@@ -3,34 +3,39 @@
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyCjB_F2kuSDsezSfXwQMTA5hXRC6kD87v4",
-    authDomain: "classproject1-6a90e.firebaseapp.com",
-    databaseURL: "https://classproject1-6a90e.firebaseio.com",
-    storageBucket: "classproject1-6a90e.appspot.com",
-    messagingSenderId: "306797326634"
+    apiKey: "AIzaSyBUL4yEypahaDrnWtUWH-OqfP5ER5SOvsw",
+    authDomain: "see-to-play.firebaseapp.com",
+    databaseURL: "https://see-to-play.firebaseio.com",
+    storageBucket: "see-to-play.appspot.com",
+    messagingSenderId: "974071434310"
   };
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
   	var database = firebase.database();
 
     $("#signUp").on("click",function(){
 
     	var userName = $("#contact-name").val().trim();
-        var userEmail = $("#email").val().trim();
+      var userEmail = $("#email").val().trim();
 
-        database.ref().push({
-        	userName: userName,
-        	userEmail: userEmail,
+      var userinput = {
+        name: userName,
+        email: userEmail,
+      }
 
-        })
+      database.ref().push(userinput);
 
-        $("#contact-name").val("");
-        $("#email").val("");
+      $("#contact-name").val("");
+      $("#email").val("");
 
+      return false;
+    });
+
+        database.ref().on("child_added", function(childSnapshot){
+        var userName = childSnapshot.val().name;
+        var userEmail = childSnapshot.val().email;
 
     });
 
-
   });
 
-  $("#information")
