@@ -64,3 +64,10 @@ input
       #target {
         width: 345px;
       }
+
+      .gm-style .gm-style-iw {
+   font-size: 16px;
+   font-weight: bold;
+   font-family: sans-serif;
+   color: #68228B;
+}

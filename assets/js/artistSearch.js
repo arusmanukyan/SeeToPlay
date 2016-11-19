@@ -139,9 +139,10 @@
 
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('Found You!');
             map.setCenter(pos);
-            console.log("currentUserPosition @ initMap function: ", pos);
+
+            // console.log("currentUserPosition @ initMap function: ", pos);
 
             // var map;
             // var infowindow;
@@ -150,8 +151,7 @@
             // myPlace = pos; 
 
             var service = new google.maps.places.PlacesService(map);
-            console.log(pos);
-
+            
             service.nearbySearch(
             {
 
@@ -177,9 +177,9 @@ function createMarker(place, callback) {
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-              var infowindow;
-              console.log(place.name);
-                infowindow.setContent(place.name);
+              
+              var infowindow = new google.maps.InfoWindow({ map: map });
+                infowindow.setContent(place.name + " Rating: " + place.rating);
                 infowindow.open(map, this);
 
             });
@@ -202,7 +202,7 @@ function createMarker(place, callback) {
                               'Error: Your browser doesn\'t support geolocation.');
       }
 
-console.log("currentUserPosition out of scope: ",currentUserPosition);
+// console.log("currentUserPosition out of scope: ",currentUserPosition);
 
 $('#selectSearch').on('click', function(){
 
