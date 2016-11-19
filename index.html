@@ -61,7 +61,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">Location</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#services">See</a>
@@ -105,59 +105,45 @@
         </div>
     </section>
 
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-
-                <h2 class="section-heading">Song Kick</h2>
-                <form id="search-form">
-               <input type="text" id="search-input"><br>
-               <hr>
-               <input id="selectSearch" class="btn btn-primary btn-xl" type="submit">
-            </form>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Artist</h3>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Date</h3>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Purchase Ticket</h3>
-                        <p class="text-muted">Here you can click to be directed to purchase your ticket.</p>
-                    </div>
-                </div>
-               
-
+    <section id="services">
+        <div id="eventView"></div>
+        <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h1 class="section-heading">Find your ticket!</h1>
+            <table class ="table">
+                <thread>
+                    <tr>
+                        <th>Artist Name</th>
+                        <th>Event Date</th>
+                        <th>Ticket URL</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <tr>
+                        <td id="artistName"></td>
+                        <td id="eventDate"></td>
+                        <td id="ticketUrl"><a href="#" id="ticketColor"></a></td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
+                <form id="event-form">
                     <hr class="primary">
-                    <a href="#portfolio" class="btn btn-primary btn-xl page-scroll">Search</a>
+                    <label for="event-input">Search for Event</label>
+                    <input type="text" id="event-input">
+                    <a href="#services" class="btn btn-primary btn-xl page-scroll" id="findEvent" type="submit" value="getEvent">Search</a>
+                </form>
                 </div>
             </div>
         </div>
     </section>
 
     
-
+    <section id="portfolio">
     <aside class="bg-dark">
         <div class="container text-center">
 
@@ -173,7 +159,7 @@
 
            
            </div>
-
+    </section>
            <!--  <iframe src="https://embed.spotify.com/?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="500" height="380" frameborder="0" allowtransparency="true">
             </iframe>
             --> 
@@ -237,6 +223,7 @@
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>

@@ -23,17 +23,18 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: white;
+  color: purple;
 }
 a:hover,
 a:focus {
-  color: #eb3812;
+  color: #bb12e5;
 }
 
 #homeHeading{
   color: #68228B;
 }
-h1{
+h1,
+th{
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   color: #68228B;
 }
@@ -41,10 +42,13 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+th {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+
 }
-p {
+p,
+td {
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -178,6 +182,9 @@ header .header-content {
   padding: 100px 15px 100px;
   width: 100%;
 }
+th, td{
+  text-align: center;
+}
 header .header-content .header-content-inner h1 {
   font-weight: 700;
   text-transform: uppercase;
@@ -188,7 +195,7 @@ header .header-content .header-content-inner h1 {
 header .header-content .header-content-inner hr {
   margin: 30px auto;
 }
-header .header-content .header-content-inner p {
+header .header-content .header-content-inner p, td {
   font-weight: 300;
   color: #68228B;
   font-size: 16px;
@@ -300,7 +307,7 @@ header .header-content .header-content-inner p {
 #homeHeading{
   color: #68228B;
 }
-.call-to-action h2 {
+.call-to-action h2, th {
   margin: 0 auto 20px;
 }
 .text-primary {
@@ -437,3 +444,4 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #222222;
 }
+
