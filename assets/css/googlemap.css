@@ -4,11 +4,11 @@
         }
 
         input, select, textarea{
-            color: #ff0000;
+            color: #68228B;
         }
 
         textarea:focus, input:focus {
-        color: #ff0000;
+        color: #68228B;
         }
 
 input
